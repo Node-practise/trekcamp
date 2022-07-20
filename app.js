@@ -26,7 +26,8 @@ const upload = multer({ storage })
 const userRoutes = require('./routes/users');
 
 // Connection to database START
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
+mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -50,8 +51,9 @@ app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
 // configuring session with middleware
+const secret = process.env.SECRET || 'thishouldbeabetterseceret!'
 const sessionConfig = {
-  secret: 'thishouldbeabetterseceret!',
+  secret: secret,
   resave: false,
   saveUninitialized: true
 }
