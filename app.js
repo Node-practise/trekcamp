@@ -38,7 +38,7 @@ db.once('open', () => {
 })
 // Connection to database END
 
-const PORT = process.env.port || 3000
+const PORT = process.env.PORT || 3000
 const app = express()
 app.listen(PORT, () => console.log('Listening to port 3000'))
 
